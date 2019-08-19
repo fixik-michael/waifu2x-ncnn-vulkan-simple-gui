@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:waifu2x_vulkan_gui"
         mc:Ignorable="d" Title="waifu2x vulkan"
-        Height="325" Width="300" MinHeight="325" MinWidth="300"
-        SizeToContent="Height" ResizeMode="CanMinimize">
+        Height="356" Width="300" MinHeight="356" MinWidth="300" ResizeMode="CanMinimize">
     <Window.Resources>
         <ResourceDictionary Source="MainDictionary.xaml"/>
     </Window.Resources>
-    <StackPanel Margin="10" Orientation="Vertical">
-        <Grid>
+    <DockPanel Margin="10">
+        <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="9"/>
@@ -20,8 +19,8 @@
             <TextBox Name="textBoxFileInput" Style="{StaticResource InputFileBox}"/>
             <Button Grid.Column="2" Content="Browse" Click="buttonInputFile_Click"/>
         </Grid>
-        <Separator Background="Transparent" Height="5"/>
-        <Grid>
+        <Separator DockPanel.Dock="Top" Background="Transparent" Height="5"/>
+        <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="9"/>
@@ -30,8 +29,8 @@
             <TextBox Name="textBoxFileOutput" Style="{StaticResource OutputFileBox}"/>
             <Button Grid.Column="2" Content="Browse" Click="buttonOutputFile_Click"/>
         </Grid>
-        <Separator Background="Transparent" Height="3"/>
-        <Grid>
+        <Separator DockPanel.Dock="Top" Background="Transparent" Height="3"/>
+        <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="5"/>
@@ -43,8 +42,8 @@
                 <ComboBoxItem Content="Upconv 7" Tag="models-upconv_7_anime_style_art_rgb"/>
             </ComboBox>
         </Grid>
-        <Separator Background="Transparent"/>
-        <Grid>
+        <Separator DockPanel.Dock="Top" Background="Transparent"/>
+        <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="5"/>
@@ -56,8 +55,8 @@
                 <ComboBoxItem Content="2x" Tag="2"/>
             </ComboBox>
         </Grid>
-        <Separator Background="Transparent"/>
-        <Grid>
+        <Separator DockPanel.Dock="Top" Background="Transparent"/>
+        <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="5"/>
@@ -72,8 +71,8 @@
                 <ComboBoxItem Content="Highest" Tag="3"/>
             </ComboBox>
         </Grid>
-        <Separator Background="Transparent"/>
-        <Grid>
+        <Separator DockPanel.Dock="Top" Background="Transparent"/>
+        <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="5"/>
@@ -82,8 +81,8 @@
             <Label Content="Tile Size"/>
             <TextBox Name="textBoxTile" Grid.Column="2" Text="400" Height="22" PreviewTextInput="TextBoxNumberValidation"/>
         </Grid>
-        <Separator Background="Transparent"/>
-        <Grid>
+        <Separator DockPanel.Dock="Top" Background="Transparent"/>
+        <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="5"/>
@@ -92,18 +91,34 @@
             <Label Content="GPU"/>
             <TextBox Name="textBoxGpu" Grid.Column="2" Text="0" Height="22" PreviewTextInput="TextBoxNumberValidation"/>
         </Grid>
-        <Separator Background="Transparent" Height="3"/>
-        <Grid>
+        <Separator DockPanel.Dock="Top" Background="Transparent"/>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Threads"/>
+            <TextBox Name="textBoxThreadsLoad" Grid.Column="2" Text="1" Height="22" PreviewTextInput="TextBoxNumberValidation" ToolTip="Decoding"/>
+            <TextBox Name="textBoxThreadsProc" Grid.Column="4" Text="2" Height="22" PreviewTextInput="TextBoxNumberValidation" ToolTip="Upscale"/>
+            <TextBox Name="textBoxThreadsSave" Grid.Column="6" Text="2" Height="22" PreviewTextInput="TextBoxNumberValidation" ToolTip="Encoding"/>
+        </Grid>
+        <Separator DockPanel.Dock="Top" Background="Transparent" Height="3"/>
+        <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="9"/>
                 <ColumnDefinition Width="75"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="*" MinHeight="50"/>
             </Grid.RowDefinitions>
             <TextBox Name="textBoxAppLog" VerticalScrollBarVisibility="Visible"/>
             <Button Grid.Column="2" Content="GO!" Click="buttonAppStart_Click"/>
         </Grid>
-    </StackPanel>
+    </DockPanel>
 </Window>

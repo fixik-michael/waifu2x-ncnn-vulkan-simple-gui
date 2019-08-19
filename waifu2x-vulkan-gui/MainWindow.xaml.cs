@@ -11,20 +11,28 @@ namespace waifu2x_vulkan_gui
 {
     public partial class MainWindow : Window
     {
-        private String InputFile => textBoxFileInput.Text;
+        private string InputFile => textBoxFileInput.Text;
 
-        private String OutputFile => textBoxFileOutput.Text;
+        private string OutputFile => textBoxFileOutput.Text;
 
-        private String ModelPath => (comboBoxModel.SelectedItem as ComboBoxItem).Tag as String;
+        private string ModelPath => (comboBoxModel.SelectedItem as ComboBoxItem).Tag as string;
 
-        private String ScaleRatio => (comboBoxScale.SelectedItem as ComboBoxItem).Tag as String;
+        private string ScaleRatio => (comboBoxScale.SelectedItem as ComboBoxItem).Tag as string;
 
-        private String NoiseLevel => (comboBoxNoise.SelectedItem as ComboBoxItem).Tag as String;
+        private string NoiseLevel => (comboBoxNoise.SelectedItem as ComboBoxItem).Tag as string;
 
-        private String TileSize => textBoxTile.Text;
+        private string TileSize => textBoxTile.Text;
 
-        private String GpuId => textBoxGpu.Text;
-        
+        private string GpuId => textBoxGpu.Text;
+
+        private string ThreadsLoad => textBoxThreadsLoad.Text;
+
+        private string ThreadsProc => textBoxThreadsProc.Text;
+
+        private string ThreadsSave => textBoxThreadsSave.Text;
+
+        private string Threads => string.Format("{0}:{1}:{2}", ThreadsLoad, ThreadsProc, ThreadsSave);
+
         public MainWindow()
         {
             InitializeComponent();
@@ -77,8 +85,8 @@ namespace waifu2x_vulkan_gui
                     RedirectStandardError = true,
                     CreateNoWindow = true,
                     FileName = "waifu2x-ncnn-vulkan.exe",
-                    Arguments = String.Format("-i \"{0}\" -o \"{1}\" -m {2} -n {3} -s {4} -t {5} -g {6}",
-                                InputFile, OutputFile, ModelPath, NoiseLevel, ScaleRatio, TileSize, GpuId)
+                    Arguments = string.Format("-i \"{0}\" -o \"{1}\" -m {2} -n {3} -s {4} -t {5} -g {6} -j {7}",
+                                InputFile, OutputFile, ModelPath, NoiseLevel, ScaleRatio, TileSize, GpuId, Threads)
                 }
             };
 
@@ -87,9 +95,10 @@ namespace waifu2x_vulkan_gui
                 waifu2x.Start();
                 waifu2x.WaitForExit();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Whoops, something went wrong...", "Error");
+                return;
             }
 
             textBoxAppLog.Text = waifu2x.StandardError.ReadToEnd();
